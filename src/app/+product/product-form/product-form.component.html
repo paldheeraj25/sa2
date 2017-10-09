@@ -1,0 +1,81 @@
+<form id="checkout-form" class="smart-form" #productForm="ngForm" (ngSubmit)="productUpload(productForm.value)">
+
+  <fieldset>
+    <div class="row">
+      <section class="col col-6">
+        <label class="input"> <i class="icon-prepend fa fa-cubes"></i>
+          <input type="text" name="productName" placeholder="Product name" ngModel>
+        </label>
+      </section>
+      <section class="col col-6">
+        <label class="input"> <i class="icon-prepend fa fa-cubes"></i>
+          <input type="text" name="productBatch" placeholder="Product Batch" ngModel>
+        </label>
+      </section>
+    </div>
+
+    <div class="row">
+      <section class="col col-6">
+        <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+          <input type="text" name="manufacture" placeholder="Manufactured On"
+            [saUiDatepicker]="{dateFormat: 'dd/mm/yy'}"  date-format="dd/mm/yy" ngModel />
+        </label>
+      </section>
+      <section class="col col-6">
+        <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+          <input type="text" name="expire" placeholder="Expire On"
+            [saUiDatepicker]="{dateFormat: 'dd/mm/yy'}"  date-format="dd/mm/yy" ngModel />
+        </label>
+      </section>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="row">
+      <section class="col col-5">
+        <label class="input">
+          <input type="text" name="country" placeholder="Country" ngModel>
+        </label>
+      </section>
+
+      <section class="col col-4">
+        <label class="input">
+          <input type="text" name="city" placeholder="City" ngModel>
+        </label>
+      </section>
+
+      <section class="col col-3">
+        <label class="input">
+          <input type="text" name="pincode" placeholder="Post code" ngModel>
+        </label>
+      </section>
+    </div>
+
+    <section>
+      <label for="address" class="input">
+        <input type="text" name="address" id="address2" placeholder="Address" ngModel>
+      </label>
+    </section>
+
+    <section>
+      <label class="textarea">
+        <textarea rows="3" name="info" placeholder="Description" ngModel></textarea>
+      </label>
+    </section>
+    <section>
+      <label class="label">File input</label>
+
+      <div class="input input-file">
+        <span class="button"><input type="file" id="file2" name="file" onchange="this.parentNode.nextSibling.value = this.value" ngModel>Browse</span>
+        <input type="text" readonly name="file2" ngModel>
+      </div>
+      <input type='file' onchange='convertFile(event)' id='fileInput' name="file3">
+      <div class="note note-error">File size must be less than 3Mb.</div>
+    </section>
+  </fieldset>
+  <footer>
+    <button type="submit" value="submit" class="btn btn-primary">
+      Submit
+    </button>
+  </footer>
+</form>
