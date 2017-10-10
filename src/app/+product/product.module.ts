@@ -14,6 +14,9 @@ import { UiDatepickerDirective } from "../shared/forms/input/ui-datepicker.direc
     SmartadminModule,
     FormsModule
   ],
+  exports: [
+    ProductFormComponent
+  ],
   declarations: [ProductComponent, ProductFormComponent, UiDatepickerDirective]
 })
 export class ProductModule { }

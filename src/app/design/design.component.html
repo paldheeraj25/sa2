@@ -1,0 +1,49 @@
+<div id="content">
+    <h4>Design UI Elements</h4>
+    <div class="row m-t-20">
+        <div class="col-sm-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">Widgets List</div>
+                <div class="panel-body">
+                    <div *ngFor="let widget of availableWidgets; let index = index" class="panel panel-default"
+                        dnd-draggable [dragEnabled]="true" [dragData]="widget" (onDragSuccess)="pushWidget($event, index)" [dropZones]="['demo1']">
+                        <div class="panel-body">
+                            <div>
+                              <label>{{widget.description}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div dnd-droppable [dropZones]="['demo1']" class="panel panel-info">
+                <div class="panel-heading">Dashboard</div>
+                <div class="panel-body">
+                    <div *ngFor="let widget of selectedWidgets; let index = index" class="panel panel-default">
+                        <div class="panel-body">
+                          <div *ngIf="widget.name === 'header'" class="row">
+                            <div class="col-sm-12 col-md-12">
+                              <div><i class="fa fa-times pull-right" (click)="pullWidget(index)"></i></div>
+                              <div class="m-15">header contents</div>
+                            </div>
+                          </div>
+                          <div *ngIf="widget.name === 'image'" class="row">
+                            <div class="col-sm-12 col-md-12">
+                              <div><i class="fa fa-times pull-right" (click)="pullWidget(index)"></i></div>
+                              <div class="m-15">image contents</div>
+                            </div>
+                          </div>
+                            <div *ngIf="widget.name === 'description'" class="row">
+                              <div class="col-sm-12 col-md-12">
+                                <div><i class="fa fa-times pull-right" (click)="pullWidget(index)"></i></div>
+                                <div class="m-15">description contents</div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
