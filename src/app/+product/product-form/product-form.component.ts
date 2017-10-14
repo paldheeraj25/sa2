@@ -23,7 +23,6 @@ export class ProductFormComponent implements OnInit {
   productUpload(product: any) {
     let productListDetail: { metadata: any, idList: any };
     productListDetail = { metadata: product, idList: this.idList };
-    console.log(productListDetail);
     this.productDataService.uploadProduct(productListDetail).subscribe(result => {
       return result;
     }, error => {

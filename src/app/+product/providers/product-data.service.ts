@@ -7,11 +7,16 @@ import 'rxjs/add/operator/take';
 @Injectable()
 export class ProductDataService {
   private productUploadUrl = "http://localhost:5012/api/upload";
+  private productListUrl = "http://localhost:5012/api/products";
 
   constructor(private http: Http) { }
 
   uploadProduct(productList: any) {
     return this.http.post(this.productUploadUrl, productList).map(res => res.json()).take(1);
+  }
+
+  listProducts() {
+    return this.http.get(this.productListUrl).map(res => res.json());
   }
 
 }

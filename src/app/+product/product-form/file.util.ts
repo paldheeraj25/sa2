@@ -6,7 +6,7 @@ export class FileUtil {
   constructor() { }
 
   isCSVFile(file) {
-    return file.name.endsWith(".csv");
+    return file.name.endsWith(".txt");
   }
 
   getHeaderArray(csvRecordsArr) {
