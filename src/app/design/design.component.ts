@@ -16,6 +16,9 @@ export class DesignComponent implements OnInit {
   availableWidgets: Array<Widget> = [];
   selectedWidgets: Array<Widget> = [];
 
+  designPayload = {};
+  showImage = false;
+
   constructor() {
       this.availableWidgets.push(new Widget('header', "Header container", 0));
       this.availableWidgets.push(new Widget('image', "Image container", 1));
@@ -37,10 +40,36 @@ export class DesignComponent implements OnInit {
     this.availableWidgets.sort((a: Widget, b: Widget) => {
         return a.index - b.index;
     });
+    if(newWidget.name === 'image'){
+      this.showImage = false;
+    }
     this.selectedWidgets.splice(index, 1);
-}
+    this.designPayload[newWidget.name] = '';
+    this.designPayload['imageUrl'] = '';
+  }
+
+  uploadImage(file) {
+    this.showImage = true;
+    var output = document.getElementById('output');
+    if(file){
+      var input = file.target;
+      let reader = new FileReader();
+      reader.onload = function(){
+        let uploadedImage = reader.result;
+        //Below lines gives you idea about image show
+        output.setAttribute('src', uploadedImage);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }else {
+      output.setAttribute('src', this.designPayload['imageUrl']);
+    }
+  };
 
 }
 class Widget {
   constructor(public name: string, public description: string, public index: number) {}
+}
+
+class DesignModel {
+  constructor(public header:string, public image:string, public description:string) {}
 }
