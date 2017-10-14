@@ -1,0 +1,96 @@
+<div id="content">
+    <h4>Design UI Elements</h4>
+    <div class="row m-t-20">
+        <div class="col-sm-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">Widgets List</div>
+                <div class="panel-body">
+                    <div *ngFor="let widget of availableWidgets; let index = index" class="panel panel-default"
+                        dnd-draggable [dragEnabled]="true" [dragData]="widget" (onDragSuccess)="pushWidget($event, index)" [dropZones]="['demo1']">
+                        <div class="panel-body">
+                            <div>
+                              <label>{{widget.description}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="availableWidgets.length === 0">
+                        <em> No more widgets </em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div dnd-droppable [dropZones]="['demo1']" class="panel panel-info">
+                <div class="panel-heading">Dashboard</div>
+                <div class="panel-body" style="min-height: 530px">
+                    <div *ngIf="selectedWidgets.length === 0">
+                        <h2><em> Drag widgets here </em></h2>
+                    </div>
+                    <form type="submit" onsubmit="submitDesign()">
+                        <div *ngFor="let widget of selectedWidgets; let index = index" class="panel panel-default">
+                            <div class="panel-body" *ngIf="widget.name === 'header'">
+                                <i class="fa fa-times pull-right" (click)="pullWidget(index)"></i>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="head" class="col-form-label">Header</label>
+                                        <input type="text" class="form-control" id="head" [(ngModel)]="designPayload.header" placeholder="Header" name="header">
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="widget.name === 'image'" class="panel-body">
+                                <i class="fa fa-times pull-right" (click)="pullWidget(index)"></i>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="image" class="col-form-label">Image</label>
+                                        <input type="file" class="form-control m-b-10" accept='image/*' id="image" [(ngModel)]="designPayload.image" placeholder="Upload image" name="image" (change)='uploadImage($event)'>
+                                        <label for="image" class="col-form-label">Or Image Url</label>
+                                        <input type="url" class="form-control" id="imageUrl" [(ngModel)]="designPayload.imageUrl" (change)='uploadImage()' placeholder="Enter image url" name="image-url">
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="widget.name === 'description'" class="panel-body">
+                                <i class="fa fa-times pull-right" (click)="pullWidget(index)"></i>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="description" class="col-form-label">Description</label>
+                                        ​<textarea id="txtArea" rows="5" class="form-control" [(ngModel)]="designPayload.description" placeholder="Description" id="Enter Description" name="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngIf="selectedWidgets.length > 0">
+                            <div class="col-sm-10">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Preview</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Dashboar Mobile view</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="content">
+                                        <div class="inner-content" >
+                                            <h2>{{designPayload.header}}</h2>
+                                            <img id='output' src ="" [hidden]="!showImage" />
+                                            <div class="description">
+                                                {{designPayload.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -78,6 +78,7 @@
     "jquery.maskedinput": "1.4.1",
     "markdown": "0.5.0",
     "morris.js": "0.5.0",
+    "ng2-dnd": "^4.2.0",
     "ngx-bootstrap": "^2.0.0-beta.2",
     "ngx-popover": "0.0.16",
     "nouislider": "9.2.0",
