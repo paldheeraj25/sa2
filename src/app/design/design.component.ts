@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {FadeInTop} from "../shared/animations/fade-in-top.decorator";
 
 @FadeInTop()
@@ -11,7 +12,9 @@ import {FadeInTop} from "../shared/animations/fade-in-top.decorator";
 export class DesignComponent implements OnInit {
 
   ngOnInit() {
-    
+    this.route.params.subscribe(params => {
+      console.log(params['id']);
+    });
   }
   availableWidgets: Array<Widget> = [];
   selectedWidgets: Array<Widget> = [];
@@ -19,7 +22,7 @@ export class DesignComponent implements OnInit {
   designPayload = {};
   showImage = false;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
       this.availableWidgets.push(new Widget('header', "Header container", 0));
       this.availableWidgets.push(new Widget('image', "Image container", 1));
       this.availableWidgets.push(new Widget('description', "Description container", 2));

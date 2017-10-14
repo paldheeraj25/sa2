@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DataTableModule } from "angular2-datatable";
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -17,16 +18,20 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 
 import { AppState, InternalStateType } from './app.service';
 import { AuthService } from "./providers/auth/auth.service";
+import { FileUtil } from "./+product/product-form/file.util";
+import { ProductDataService } from "./+product/providers/product-data.service";
 
 // Core providers
-import {CoreModule} from "./core/core.module";
-import {SmartadminLayoutModule} from "./shared/layout/layout.module";
+import { CoreModule } from "./core/core.module";
+import { SmartadminLayoutModule } from "./shared/layout/layout.module";
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  AuthService
+  AuthService,
+  ProductDataService,
+  FileUtil
 ];
 
 type StoreType = {
@@ -39,7 +44,7 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
   ],
@@ -64,7 +69,7 @@ type StoreType = {
   ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef, public appState: AppState) {}
+  constructor(public appRef: ApplicationRef, public appState: AppState) { }
 
 
 }

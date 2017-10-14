@@ -10,8 +10,8 @@
     <h4 class="alert-heading">Please Note!</h4>
 
     <p>
-      This page only shows various form element states for error and success. For a full list of error validations and
-      examples click on the link below to go to the <strong>Smart Form Layouts</strong> page
+      This page only shows various form element states for error and success. For a full list of error validations and examples
+      click on the link below to go to the <strong>Smart Form Layouts</strong> page
     </p>
     <br>
     <a [routerLink]="['../layouts']" class="btn btn-primary"><strong><i class="fa fa-arrow-circle-right"></i> Form Layouts
@@ -73,8 +73,10 @@
                   <section>
                     <label class="label">File input</label>
 
-                    <div class="input input-file state-error">
-                      <span class="button"><input type="file" id="file2" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" readonly>
+                    <div class="input input-file">
+                      <span class="button"><input type="file" id="file2" onchange="this.parentNode.nextSibling.value = this.value">Browse</span>
+                      <input
+                        type="text" readonly>
                     </div>
                     <div class="note note-error">File size must be less than 3Mb.</div>
                   </section>
@@ -245,7 +247,9 @@
                     <label class="label">File input</label>
 
                     <div class="input input-file state-success">
-                      <span class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" readonly>
+                      <span class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</span>
+                      <input
+                        type="text" readonly>
                     </div>
                     <div class="note note-success">This is a required field.</div>
                   </section>

@@ -9,6 +9,13 @@ export const designRoutes: Routes = [
     data: {
       pageTitle: 'Design'
     }
+  },
+  {
+    path: ':id',
+    component: DesignComponent,
+    data: {
+      pageTitle: 'Edit'
+    }
   }
 ];
 
