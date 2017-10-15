@@ -8,6 +8,7 @@ import { SmartadminModule } from "../shared/smartadmin.module";
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductListComponent } from './product-list/product-list.component'
 import { SmartadminDatatableModule } from "../shared/ui/datatable/smartadmin-datatable.module";
+import { ShowSelectedPipe } from "../pipes/show-selected.pipe";
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { SmartadminDatatableModule } from "../shared/ui/datatable/smartadmin-dat
     SmartadminDatatableModule,
     DataTableModule
   ],
-  declarations: [ProductComponent, ProductFormComponent, ProductListComponent]
+  declarations: [ProductComponent, ProductFormComponent, ProductListComponent, ShowSelectedPipe]
 })
 export class ProductModule { }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { ProductDataService } from '../providers/product-data.service';
 import { Product } from "../interfaces/product";
+import { ShowSelectedPipe } from '../../../pipes/show-selected.pipe';
 import { Observable } from "rxjs";
 
 @Component({
@@ -19,13 +21,11 @@ export class ProductListComponent implements OnInit {
   public products: Observable<Product[]>;
 
 
-  constructor(private http: Http, private productDataService: ProductDataService) { }
+  constructor(private http: Http, private productDataService: ProductDataService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.productDataService.listProducts().subscribe(result => {
-      this.products = result;
-    });
+    this.products = this.productDataService.listProducts();
   };
 
   public toInt(num: string) {
@@ -37,7 +37,8 @@ export class ProductListComponent implements OnInit {
   }
 
   goToDesign(item: any) {
-    console.log(item);
+    this.productDataService.selectedProduct = item;
+    this.router.navigate(['design/' + item.batchId]);
   };
 
   goToView(item: any) {
