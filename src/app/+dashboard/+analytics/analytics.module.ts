@@ -15,7 +15,17 @@ import { TodoListComponent } from './todo-widget/todo-list.component';
 import { FlotChartModule } from "../../shared/graphs/flot-chart/flot-chart.module";
 import { D3Module } from "../../shared/graphs/d3/d3.module";
 import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
+declare var require: any;
+
+export function highchartsFactory() {
+  const hc = require('highcharts');
+  const dd = require('highcharts/modules/drilldown');
+  dd(hc);
+
+  return hc;
+}
 
 @NgModule({
   imports: [
@@ -24,7 +34,7 @@ import { ChartModule } from 'angular2-highcharts';
     CalendarModule,
     FlotChartModule,
     D3Module,
-    ChartModule.forRoot(require('highcharts'))
+    ChartModule
   ],
   declarations: [
     AnalyticsComponent,
@@ -40,7 +50,12 @@ import { ChartModule } from 'angular2-highcharts';
 
     TodoListComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    }
+  ],
 })
 export class AnalyticsModule {
 
