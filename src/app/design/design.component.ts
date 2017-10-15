@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {FadeInTop} from "../shared/animations/fade-in-top.decorator";
+import { has, keys, pick } from 'lodash';
+import { FadeInTop } from "../shared/animations/fade-in-top.decorator";
+import { Product } from "../+product/interfaces/product";
+import { ProductDataService } from "../+product/providers/product-data.service";
 
 @FadeInTop()
 @Component({
@@ -11,21 +14,37 @@ import {FadeInTop} from "../shared/animations/fade-in-top.decorator";
 })
 export class DesignComponent implements OnInit {
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      console.log(params['id']);
-    });
-  }
+  private product: Product;
   availableWidgets: Array<Widget> = [];
   selectedWidgets: Array<Widget> = [];
+
+  private routeState = { design: 'Design', edit: 'Edit' };
+  private widgetCollection = [
+    { name: "heading", container: "heading container", id: 0 },
+    { name: "image", container: "Image container", id: 1 },
+    { name: "description", container: "Description container", id: 2 }
+  ];
 
   designPayload = {};
   showImage = false;
 
-  constructor(private route: ActivatedRoute) {
-      this.availableWidgets.push(new Widget('header', "Header container", 0));
-      this.availableWidgets.push(new Widget('image', "Image container", 1));
-      this.availableWidgets.push(new Widget('description', "Description container", 2));
+  ngOnInit() {
+    if (this.route.snapshot.data['pageTitle'] === this.routeState.design) {
+      for (let widget of this.widgetCollection) {
+        this.availableWidgets.push(new Widget(widget.name, widget.container, widget.id));
+      }
+    } else {
+      for (let widget of this.widgetCollection) {
+        if (has(this.productDataService.selectedProduct, widget.name) && this.productDataService.selectedProduct[widget.name].show) {
+          this.selectedWidgets.push(new Widget(widget.name, widget.container, widget.id));
+        } else {
+          this.availableWidgets.push(new Widget(widget.name, widget.container, widget.id));
+        }
+      }
+    }
+  }
+
+  constructor(private route: ActivatedRoute, private productDataService: ProductDataService) {
   }
 
   pushWidget($event: any, index: number) {
@@ -41,9 +60,9 @@ export class DesignComponent implements OnInit {
     let newWidget: Widget = this.selectedWidgets[index];
     this.availableWidgets.push(new Widget(newWidget.name, newWidget.description, newWidget.index));
     this.availableWidgets.sort((a: Widget, b: Widget) => {
-        return a.index - b.index;
+      return a.index - b.index;
     });
-    if(newWidget.name === 'image'){
+    if (newWidget.name === 'image') {
       this.showImage = false;
     }
     this.selectedWidgets.splice(index, 1);
@@ -54,25 +73,41 @@ export class DesignComponent implements OnInit {
   uploadImage(file) {
     this.showImage = true;
     var output = document.getElementById('output');
-    if(file){
+    if (file) {
       var input = file.target;
       let reader = new FileReader();
-      reader.onload = function(){
+      reader.onload = function () {
         let uploadedImage = reader.result;
         //Below lines gives you idea about image show
         output.setAttribute('src', uploadedImage);
       };
       reader.readAsDataURL(input.files[0]);
-    }else {
+    } else {
       output.setAttribute('src', this.designPayload['imageUrl']);
     }
   };
 
+  submitDesign() {
+    // for (let widget of this.selectedWidgets) {
+    //   console.log(widget.name)
+    //   console.log(has(this.productDataService.selectedProduct, widget.name));
+    //   this.productDataService.selectedProduct[widget.name].show = has(this.selectedWidgets.selectedProduct, widget.name) ? true : false;
+    //   // if(has(this.productDataService.selectedProduct, widget.name)){
+    //   //   this.productDataService.selectedProduct[widget.name].show = true;
+    //   // } else{
+    //   //   this.productDataService.selectedProduct[widget.name].show = false;
+    //   // }
+    // }
+    // for (let widget of this.productDataService.selectedProduct) {
+    //     this.availableWidgets.push(new Widget(widget.name, widget.container, widget.id));
+    //   }
+    console.log(this.productDataService.selectedProduct);
+  }
 }
 class Widget {
-  constructor(public name: string, public description: string, public index: number) {}
+  constructor(public name: string, public description: string, public index: number) { }
 }
 
 class DesignModel {
-  constructor(public header:string, public image:string, public description:string) {}
+  constructor(public heading: string, public image: string, public description: string) { }
 }
