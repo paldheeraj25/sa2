@@ -49,6 +49,7 @@
     "@swimlane/ngx-datatable": "^10.2.3",
     "X-editable": "github:vitalets/x-editable",
     "angular2-datatable": "^0.6.0",
+    "angular2-highcharts": "^0.5.5",
     "bootstrap": "3.3.7",
     "bootstrap-colorpicker": "2.5.1",
     "bootstrap-duallistbox": "3.0.6",
