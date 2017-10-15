@@ -14,6 +14,7 @@ import { TodoWidgetComponent } from './todo-widget/todo-widget.component';
 import { TodoListComponent } from './todo-widget/todo-list.component';
 import { FlotChartModule } from "../../shared/graphs/flot-chart/flot-chart.module";
 import { D3Module } from "../../shared/graphs/d3/d3.module";
+import { ChartModule } from 'angular2-highcharts';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { D3Module } from "../../shared/graphs/d3/d3.module";
     CalendarModule,
     FlotChartModule,
     D3Module,
+    ChartModule.forRoot(require('highcharts'))
   ],
   declarations: [
     AnalyticsComponent,

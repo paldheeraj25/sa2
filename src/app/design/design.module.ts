@@ -4,7 +4,6 @@ import { designRouting } from "./design.routing";
 import {SmartadminModule} from '../shared/smartadmin.module';
 import {DndModule} from 'ng2-dnd';
 
-
 @NgModule({
   imports: [
     SmartadminModule,
