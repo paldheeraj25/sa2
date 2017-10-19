@@ -35,6 +35,11 @@ export const routes: Routes = [
         data: { pageTitle: 'Product' } 
       },
       { 
+        path: 'user', 
+        loadChildren: 'app/user/user.module#UserModule', 
+        data: { pageTitle: 'User' } 
+      },
+      { 
         path: 'design', 
         loadChildren: 'app/design/design.module#DesignModule', 
         data: { pageTitle: 'Design' } 

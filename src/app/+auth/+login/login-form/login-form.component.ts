@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class LoginFormComponent implements OnInit {
 
-  public loginMessage: string;
+  public error: Boolean = false;
   constructor(private router: Router, private authService: AuthService) {
 
   }
@@ -22,10 +22,11 @@ export class LoginFormComponent implements OnInit {
   onSubmit(user) {
     this.submitted = true;
     this.authService.login(user).subscribe(result => {
+      this.error = false;
       localStorage.setItem('key', result.token);
       this.router.navigate(['/dashboard']);
     }, error => {
-      this.loginMessage = error._body;
+      this.error = true;
     });
   }
 
