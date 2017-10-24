@@ -1,7 +1,6 @@
 <form class="smart-form client-form" (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">
   <header>
     Sign In
-    <span class="text-danger">{{loginMessage}}</span>
   </header>
   <fieldset>
     <section>
@@ -29,6 +28,7 @@
       <label class="checkbox">
         <input type="checkbox" name="remember" checked>
       <i></i>Stay signed in</label>
+      <label class="text-danger" *ngIf="error">Invalid login : Combination of user name and password is not correct</label>
     </section>
   </fieldset>
   <footer>

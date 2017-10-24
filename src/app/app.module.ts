@@ -21,6 +21,7 @@ import { AuthService } from "./providers/auth/auth.service";
 import { FileUtil } from "./+product/product-form/file.util";
 import { ProductDataService } from "./+product/providers/product-data.service";
 import { AdvertisementDataService } from "./advertisement/providers/advertisement-data.service";
+import { UserDataService } from './user/provider/user-data.service';
 
 // Core providers
 import { CoreModule } from "./core/core.module";
@@ -33,7 +34,8 @@ const APP_PROVIDERS = [
   AuthService,
   ProductDataService,
   FileUtil,
-  AdvertisementDataService
+  AdvertisementDataService,
+  UserDataService
 ];
 
 type StoreType = {

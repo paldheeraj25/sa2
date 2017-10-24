@@ -39,10 +39,21 @@ export const routes: Routes = [
         loadChildren: 'app/design/design.module#DesignModule',
         data: { pageTitle: 'Design' }
       },
+
       {
         path: 'advertisement',
         loadChildren: 'app/advertisement/advertisement.module#AdvertisementModule',
         data: { pageTitle: 'Advertisement' }
+      },
+      {
+        path: 'user',
+        loadChildren: 'app/user/user.module#UserModule',
+        data: { pageTitle: 'User' }
+      },
+      {
+        path: 'design',
+        loadChildren: 'app/design/design.module#DesignModule',
+        data: { pageTitle: 'Design' }
       }
     ]
   },
