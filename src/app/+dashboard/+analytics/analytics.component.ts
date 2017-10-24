@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FadeInTop} from "../../shared/animations/fade-in-top.decorator";
+import { FadeInTop } from "../../shared/animations/fade-in-top.decorator";
+import { Chart } from 'angular-highcharts';
 
 @FadeInTop()
 @Component({
@@ -10,141 +11,101 @@ export class AnalyticsComponent implements OnInit {
 
   lastWeek: Object;
   thisYear: Object;
-  constructor() { 
-    this.lastWeek = {
-          chart: {
-              type: 'column',
-              height: 400,
-              width: 500
-          },
-          title: {
-              text: 'Taps for last 7 Days'
-          },
-          subtitle: {
-              text: 'Resize the frame or click buttons to change appearance'
-          },
-          legend: {
-              align: 'right',
-              verticalAlign: 'middle',
-              layout: 'vertical'
-          },
-          xAxis: {
-              categories: ['16 Oct', '17 Oct', '18 Oct', '19 Oct', '20 Oct', '21 Oct', '22 Oct'],
-              labels: {
-                  x: -10
-              }
-          },
-          yAxis: {
-              allowDecimals: false,
-              title: {
-                  text: 'Amount'
-              }
-          },
-          series: [{
-              name: 'Taps',
-              data: [1000, 4000, 3000, 7500, 8000, 9000, 9999]
-          }],
-          responsive: {
-              rules: [{
-                  condition: {
-                      maxWidth: 500
-                  },
-                  chartOptions: {
-                      legend: {
-                          align: 'center',
-                          verticalAlign: 'bottom',
-                          layout: 'horizontal'
-                      },
-                      yAxis: {
-                          labels: {
-                              align: 'left',
-                              x: 0,
-                              y: -5
-                          },
-                          title: {
-                              text: null
-                          }
-                      },
-                      subtitle: {
-                          text: null
-                      },
-                      credits: {
-                          enabled: false
-                      }
-                  }
-              }]
-          }
-      };
+  public monthlyTapchart: any;
+  public weeklyTapchart: any;
 
-      this.thisYear = {
 
-        chart: {
-          type: 'column',
-          height: 400,
-          width: 500
+  constructor() {
+
+    //hardcoded data for monthly tapped chart
+    this.monthlyTapchart = new Chart({
+      chart: {
+        type: 'column'
       },
       title: {
-          text: 'Taps for Current year'
+        text: 'Monthly Average Taps'
       },
       subtitle: {
-          text: 'Resize the frame or click buttons to change appearance'
+        text: 'Source: Lewiot App'
       },
-      legend: {
-          align: 'right',
-          verticalAlign: 'middle',
-          layout: 'vertical'
-      },
+      colors: [
+        '#90caed',
+        '#ff6b8c'
+      ],
       xAxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Oct', 'Nov', 'Dec'],
-          labels: {
-              x: -10
-          }
+        categories: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec'
+        ],
+        crosshair: true
       },
-      yAxis: {
-          allowDecimals: false,
-          title: {
-              text: 'Amount'
-          }
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
       },
       series: [{
-          name: 'Taps',
-          data: [100000, 400000, 350000, 700500, 108000, 900050, 999900, 100020, 200012, 201021, 123110, 400050, 500035]
-      }],
-      responsive: {
-          rules: [{
-              condition: {
-                  maxWidth: 500
-              },
-              chartOptions: {
-                  legend: {
-                      align: 'center',
-                      verticalAlign: 'bottom',
-                      layout: 'horizontal'
-                  },
-                  yAxis: {
-                      labels: {
-                          align: 'left',
-                          x: 0,
-                          y: -5
-                      },
-                      title: {
-                          text: null
-                      }
-                  },
-                  subtitle: {
-                      text: null
-                  },
-                  credits: {
-                      enabled: false
-                  }
-              }
-          }]
-      }
-    };
+        name: 'Genuine Taps',
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+      },
+      {
+        name: 'Tampered/Counterfieted Taps',
+        data: [-39.9, -11.5, -86.4, -99.2, -4.0, -46.0, -35.6, -48.5, -96.4, -94.1, -25.6, -14.4]
+
+      }]
+    });
+
+    //hardcoded data for weekly tapped chart
+    this.weeklyTapchart = new Chart({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Weekly Average Taps'
+      },
+      colors: [
+        '#90caed',
+        '#ff6b8c'
+      ],
+      xAxis: {
+        categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat']
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        name: 'Genuine',
+        data: [5, 3, 4, 7, 2, 8, 6]
+      }, {
+        name: 'Tampered/Counterfieted',
+        data: [-1, -2, -3, -2, -7, -5, -8]
+      }]
+    });
   }
 
+
   ngOnInit() {
-    
+
   }
 
 }
