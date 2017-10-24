@@ -11,11 +11,15 @@ export class UserFormComponent implements OnInit {
 
   constructor(private userDataService : UserDataService, private router : Router) { }
 
+  showLoader = false;
+
   ngOnInit() {
   }
 
   userCreation (payload){
+    this.showLoader = true;
     this.userDataService.create(payload).subscribe(res=>{
+      this.showLoader = false;
       this.router.navigate(['user/list']);
     })
   }
