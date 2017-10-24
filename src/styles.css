@@ -2,3 +2,19 @@
 
 /* #GOOGLE FONT */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700");
+
+
+.show-loader {
+  opacity: 0.6;
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  text-align:center;
+  z-index:1000;
+  right:0;
+  bottom:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}

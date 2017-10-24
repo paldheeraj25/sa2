@@ -14,6 +14,7 @@ export class ProductDataService {
   constructor(private http: Http) { }
 
   uploadProduct(productList: any) {
+    console.log(productList);
     return this.http.post(this.productUploadUrl, productList).map(res => res.json()).take(1);
   }
 
