@@ -15,34 +15,45 @@ export const routes: Routes = [
     data: { pageTitle: 'Home' },
     children: [
       {
-        path: '', 
-        redirectTo: 'home', 
+        path: '',
+        redirectTo: 'home',
         pathMatch: 'full'
       },
-      { 
-        path: 'home', 
-        loadChildren: 'app/+home/home.module#HomeModule', 
-        data: { pageTitle: 'Home' } 
+      {
+        path: 'home',
+        loadChildren: 'app/+home/home.module#HomeModule',
+        data: { pageTitle: 'Home' }
       },
-      { 
-        path: 'dashboard', 
-        loadChildren: 'app/+dashboard/dashboard.module#DashboardModule', 
-        data: { pageTitle: 'Dashboard' } 
+      {
+        path: 'dashboard',
+        loadChildren: 'app/+dashboard/dashboard.module#DashboardModule',
+        data: { pageTitle: 'Dashboard' }
       },
-      { 
-        path: 'product', 
-        loadChildren: 'app/+product/product.module#ProductModule', 
-        data: { pageTitle: 'Product' } 
+      {
+        path: 'product',
+        loadChildren: 'app/+product/product.module#ProductModule',
+        data: { pageTitle: 'Product' }
       },
-      { 
-        path: 'user', 
-        loadChildren: 'app/user/user.module#UserModule', 
-        data: { pageTitle: 'User' } 
+      {
+        path: 'design',
+        loadChildren: 'app/design/design.module#DesignModule',
+        data: { pageTitle: 'Design' }
       },
-      { 
-        path: 'design', 
-        loadChildren: 'app/design/design.module#DesignModule', 
-        data: { pageTitle: 'Design' } 
+
+      {
+        path: 'advertisement',
+        loadChildren: 'app/advertisement/advertisement.module#AdvertisementModule',
+        data: { pageTitle: 'Advertisement' }
+      },
+      {
+        path: 'user',
+        loadChildren: 'app/user/user.module#UserModule',
+        data: { pageTitle: 'User' }
+      },
+      {
+        path: 'design',
+        loadChildren: 'app/design/design.module#DesignModule',
+        data: { pageTitle: 'Design' }
       }
     ]
   },

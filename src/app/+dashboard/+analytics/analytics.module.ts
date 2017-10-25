@@ -14,8 +14,9 @@ import { TodoWidgetComponent } from './todo-widget/todo-widget.component';
 import { TodoListComponent } from './todo-widget/todo-list.component';
 import { FlotChartModule } from "../../shared/graphs/flot-chart/flot-chart.module";
 import { D3Module } from "../../shared/graphs/d3/d3.module";
-import { ChartModule } from 'angular2-highcharts';
+//import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import { ChartModule } from 'angular-highcharts';
 
 declare var require: any;
 

@@ -16,14 +16,13 @@
         <a routerLink="/dashboard/analytics" title="Dashboard">
                 <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Dashboard' | i18n}}</span></a>
       </li>
-      <li routerLinkActive="active">
-        <a routerLink="/design" title="Design">
-          <i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Design</span></a>
-      </li>
       <li>
         <a href="#"><i class="fa fa-lg fa-fw fa-desktop"></i> <span
           class="menu-item-parent">{{'Product Managment' | i18n}}</span></a>
         <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/design" title="Design"><span class="menu-item-parent">{{'Design' | i18n}}</span></a>
+          </li>
           <li routerLinkActive="active">
             <a routerLink="/product/create">{{'Product Batch Upload' | i18n}}</a>
           </li>
@@ -31,6 +30,9 @@
             <a routerLink="/product/list">{{'Product Batch List' | i18n}}</a>
           </li>
         </ul>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/advertisement" title="Advertisement"><i class="fa fa-lg fa-fw fa-paper-plane"></i> <span class="menu-item-parent">{{'Advertisement' | i18n}}</span></a>
       </li>
       <li>
         <a href="#"><i class="fa fa-lg fa-fw fa-user"></i> <span
