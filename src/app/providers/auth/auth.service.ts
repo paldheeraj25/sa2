@@ -13,4 +13,8 @@ export class AuthService {
   login(user){
     return this.http.post('http://localhost:5012/api/login', user).map(res => res.json()).take(1);
   }
+
+  logout() {
+    return this.http.get('http://localhost:5012/api/logout').map(res => res.json()).take(1);
+  }
 }
