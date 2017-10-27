@@ -3,9 +3,12 @@
   <div class="row m-t-20">
     <div class="col-sm-3">
       <div class="panel panel-success">
-        <div class="panel-heading">Widgets List</div>
+        <div class="panel-heading">
+          <label>Widgets List</label>
+          <input type="text" class="form-control" [(ngModel)]="searchWidgets" placeholder="Find ..." />
+        </div>
         <div class="panel-body">
-          <div *ngFor="let widget of availableWidgets; let index = index" class="panel panel-default" dnd-draggable [dragEnabled]="true"
+          <div *ngFor="let widget of availableWidgets | containsFilter:searchWidgets; let index = index" class="panel panel-default" dnd-draggable [dragEnabled]="true"
             [dragData]="widget" (onDragSuccess)="pushWidget($event, index)" [dropZones]="['design']">
             <div class="panel-body">
               <div>
@@ -60,6 +63,20 @@
                   </div>
                 </div>
               </div>
+              <div *ngIf="widget.name === 'border'" class="panel-body">
+                <span style="border-bottom : 1px"></span>
+              </div>
+              <div *ngIf="widget.name === 'item'" class="panel-body">
+                <i class="fa fa-times pull-right" (click)="pullWidget(index)"></i>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="item" class="col-form-label">Item Name</label> ​
+                    <input type="text" id="itemName" class="form-control" [(ngModel)]="designPayload.itemName" 
+                      placeholder="Item Name"
+                      name="itemName" />
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form-group row" *ngIf="selectedWidgets.length > 0">
               <div class="col-sm-10">
@@ -71,16 +88,20 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                  <div class="modal-heading">
+                  <div class="modal-heading m-l-15 m-t-10">
                     <h5 class="modal-title" id="exampleModalLabel">Dashboar Mobile view</h5>
                   </div>
                   <div class="modal-body">
                     <div class="content">
                       <div class="inner-content">
-                        <h2>{{designPayload.heading}}</h2>
+                        <h2 class="m-t-0" style="border-bottom: 1px dashed;">{{designPayload.heading}}</h2>
                         <img id='output' src="" [hidden]="!showImage" />
                         <div class="description">
                           {{designPayload.description}}
+                        </div>
+                        <div class="itemName">
+                          <span class="col-sm-2 col-md-2 p-l-0">Item: </span>
+                          <span class="col-sm-10 col-md-10">{{designPayload.itemName}}</span>
                         </div>
                       </div>
                     </div>
