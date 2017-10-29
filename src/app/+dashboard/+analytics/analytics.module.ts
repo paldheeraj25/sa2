@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule } from "@angular/forms";
 import { SmartadminModule } from '../../shared/smartadmin.module'
 
 import { AnalyticsRoutingModule } from './analytics-routing.module';
@@ -32,6 +32,7 @@ export function highchartsFactory() {
   imports: [
     SmartadminModule,
     AnalyticsRoutingModule,
+    ReactiveFormsModule,
     CalendarModule,
     FlotChartModule,
     D3Module,
