@@ -20,15 +20,25 @@ export class DesignComponent implements OnInit {
 
   private routeState = { design: 'Design', edit: 'Edit' };
   private widgetCollection = [
-    { name: "heading", container: "heading container", id: 0 },
-    { name: "image", container: "Image container", id: 1 },
-    { name: "description", container: "Description container", id: 2 },
-    { name: "border", container: "Bottom border", id: 3},
-    { name: "item", container: "Item name", id: 4},
+    { name: "heading", container: "Header", id: 0 },
+    { name: "image", container: "Image", id: 1 },
+    { name: "description", container: "Description", id: 2 },
+    // { name: "border", container: "Bottom border", id: 3},
+    { name: "item", container: "Item Name", id: 4},
     { name: "GWInGms", container: "GW in grams", id: 5},
-    { name: "NetWeight", container: "Net Weight", id: 6},
-    { name: "GoldRate", container: "Gold Rate", id: 7},
-    { name: "SettingsCharge", container: "Settings Charges", id: 8}
+    { name: "netWeight", container: "Net Weight", id: 6},
+    { name: "goldRate", container: "Gold Rate", id: 7},
+    { name: "settingsCharge", container: "Settings Charges", id: 8},
+    { name: "wastage", container: "Wastage", id: 9},
+    { name: "stoneCharges", container: "Stone Charges", id: 10},
+    { name: "totalAmount", container: "Total Amount", id: 11},
+    { name: "discount", container: "Discount", id: 12},
+    { name: "sc", container: "SC", id: 13},
+    { name: "grossAmount", container: "Gross Amount", id: 14},
+    { name: "exDuty", container: "Ex Duty", id: 15},
+    { name: "vat", container: "VAT", id: 16},
+    { name: "cess", container: "CESS", id: 17},
+    { name: "netAmount", container: "Net Amount", id: 18}
   ];
 
   designPayload = {};
