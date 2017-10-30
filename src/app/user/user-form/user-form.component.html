@@ -1,5 +1,10 @@
-<form id="checkout-form" class="smart-form" #userForm="ngForm" (ngSubmit)="userCreation(userForm.value)">
-    
+<div class="show-loader" *ngIf="showLoader">
+  <div>
+    <i class="fa fa-5x fa-circle-o-notch fa-spin"></i>
+    <h3> Product upload in progress ...</h3>
+  </div>
+</div>
+<form id="checkout-form" class="smart-form" #userForm="ngForm" (ngSubmit)="userCreation(userForm.value)" *ngIf="!showLoader">
       <fieldset>
         <div class="row">
           <section class="col col-6">

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileUtil } from './file.util';
 import { ProductDataService } from "../providers/product-data.service";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -13,19 +14,23 @@ export class ProductFormComponent implements OnInit {
 
   fileImportInput: any;
   private idList: Array<string>;
+  public showLoader: boolean = false;
 
   csvRecords = [];
-  constructor(private _fileUtil: FileUtil, private productDataService: ProductDataService) { }
+  constructor(private _fileUtil: FileUtil, private productDataService: ProductDataService, private router: Router) { }
 
   ngOnInit() {
   }
 
   productUpload(product: any) {
+    this.showLoader = true;
     let productListDetail: { metadata: any, idList: any };
     productListDetail = { metadata: product, idList: this.idList };
     this.productDataService.uploadProduct(productListDetail).subscribe(result => {
-      return result;
+      this.showLoader = false;
+      this.router.navigate(['product/list']);
     }, error => {
+      this.showLoader = false;
       return error;
     });
   }

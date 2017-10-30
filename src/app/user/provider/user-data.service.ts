@@ -11,7 +11,7 @@ import { Product } from "../interfaces/product";
 export class UserDataService {
   private createUrl = "http://localhost:5012/api/register";
   private listUrl = "http://localhost:5012/api/users";
-  private deleteUrl = "http://localhost:5012/api/user";
+  private deleteUrl = "http://localhost:5012/api/users";
   constructor(private http: Http) { }
 
   create(user: any) {
