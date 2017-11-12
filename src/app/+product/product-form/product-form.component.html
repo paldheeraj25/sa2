@@ -1,5 +1,10 @@
-<form id="checkout-form" class="smart-form" #productForm="ngForm" (ngSubmit)="productUpload(productForm.value)">
-
+<div class="show-loader" *ngIf="showLoader">
+  <div>
+    <i class="fa fa-5x fa-circle-o-notch fa-spin"></i>
+    <h3> Product upload in progress ...</h3>
+  </div>
+</div>
+<form id="checkout-form" class="smart-form" #productForm="ngForm" (ngSubmit)="productUpload(productForm.value)" *ngIf="!showLoader">
   <fieldset>
     <div class="row">
       <section class="col col-6">
@@ -67,7 +72,7 @@
       </label>
     </section>
     <section>
-      <label class="label">File input</label>
+      <label class="label">Batch List</label>
       <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" class="btn btn-primary" (change)="fileChangeListener($event)"
         accept=".txt" />
     </section>
