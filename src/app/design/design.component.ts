@@ -17,6 +17,7 @@ export class DesignComponent implements OnInit {
   private product: Product;
   availableWidgets: Array<Widget> = [];
   selectedWidgets: Array<Widget> = [];
+  public oldValue: any;
 
   private routeState = { design: 'Design', edit: 'Edit' };
   private widgetCollection = [
