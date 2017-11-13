@@ -2,7 +2,6 @@
   "name": "smartadmin",
   "version": "0.4.5",
   "license": "WRAPBOOTSTRAP",
-  "angular-cli": {},
   "scripts": {
     "build:dev": "./node_modules/.bin/ng build",
     "build:prod": "./node_modules/.bin/ng build --prod --aot=false",
@@ -100,7 +99,7 @@
     "zone.js": "0.8.11"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.6",
+    "@angular/cli": "1.2.6",
     "@angular/compiler-cli": "4.1.3",
     "@types/jasmine": "2.5.47",
     "@types/jquery": "2.0.45",
