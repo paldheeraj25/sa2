@@ -17,9 +17,16 @@ export class ProductDataService {
     console.log(productList);
     return this.http.post(this.productUploadUrl, productList).map(res => res.json()).take(1);
   }
+  createAuthorizationHeader(headers: Headers) {
+    headers.append('Authorization', 'bearer ' + localStorage.getItem('key'));
+  }
 
   listProducts() {
-    return this.http.get(this.productListUrl).map(res => res.json());
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.productListUrl, {
+      headers: headers
+    }).map(res => res.json());
   }
 
 }
